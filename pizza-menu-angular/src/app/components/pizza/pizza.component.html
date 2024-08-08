@@ -8,7 +8,7 @@
         @if (pizza.soldOut) {
           <span>SOLD OUT</span>
         } @else {
-          <span>{{ pizza.price }}</span>
+          <span>{{ pizza.price | currency }}</span>
         }
       </div>
     </li>

@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
 import { PizzaComponent } from './components/pizza/pizza.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PizzaService } from './services/pizza.service';
@@ -7,7 +6,7 @@ import { PizzaService } from './services/pizza.service';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, PizzaComponent, FooterComponent],
+  imports: [PizzaComponent, FooterComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

@@ -169,14 +169,15 @@ body {
   border: none;
   font-size: 1.4rem;
   font-weight: 500;
-  background-color: #edc84b;
+  background: linear-gradient(to right, #e90d38, #7903fe);
+  color: #fff;
   padding: 1.4rem 3.2rem;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .btn:hover {
-  background-color: #e9bb24;
+  opacity: 0.8;
 }
 
 /*

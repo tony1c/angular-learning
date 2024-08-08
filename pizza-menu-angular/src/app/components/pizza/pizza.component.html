@@ -1,0 +1,17 @@
+hello
+<ul class="pizzas">
+  @for (pizza of pizzas; track pizza.name) {
+    <li class="pizza" [class.sold-out]="pizza.soldOut">
+      <img src="assets/{{ pizza.photoName }}" [alt]="pizza.name" />
+      <div>
+        <h3>{{ pizza.name }}</h3>
+        <p>{{ pizza.ingredients }}</p>
+        @if (pizza.soldOut) {
+          <span>SOLD OUT</span>
+        } @else {
+          <span>{{ pizza.price }}</span>
+        }
+      </div>
+    </li>
+  }
+</ul>

@@ -4,10 +4,13 @@
   </header>
   <main class="menu">
     <h2>Our Menu</h2>
-    <p>
-      Authentic Italian cuisine. {{ pizzaCount }} creative dishes to choose
-      from. All from our stone oven, all organic, all delicious.
-    </p>
+    @if (pizzaCount > 0) {
+      <p>
+        Authentic Italian cuisine. {{ pizzaCount }} creative dishes to choose
+        from. All from our stone oven, all organic, all delicious.
+      </p>
+    }
+
     <app-pizza></app-pizza>
     <app-footer></app-footer>
   </main>

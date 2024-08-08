@@ -8,11 +8,11 @@ import { pizzas } from '../mocks/pizzas-data';
 export class PizzaService {
   private pizzas: Pizza[] = pizzas;
 
-  public getPizza(): Pizza[] {
+  public getPizzas(): Pizza[] {
     return this.pizzas;
   }
 
-  public pizzaCount(): number {
+  public getPizzaCount(): number {
     return this.pizzas.length;
   }
 }

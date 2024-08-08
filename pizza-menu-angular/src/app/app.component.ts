@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { PizzaComponent } from './components/pizza/pizza.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { PizzaService } from './services/pizza.service';
@@ -12,9 +12,6 @@ import { PizzaService } from './services/pizza.service';
 })
 export class AppComponent {
   title = 'pizza-menu-angular';
-  pizzaCount: number;
-
-  constructor(private pizzaService: PizzaService) {
-    this.pizzaCount = this.pizzaService.pizzaCount();
-  }
+  #pizzaService: PizzaService = inject(PizzaService);
+  pizzaCount: number = this.#pizzaService.getPizzaCount();
 }

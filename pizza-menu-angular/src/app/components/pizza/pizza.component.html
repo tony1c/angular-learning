@@ -1,16 +1,18 @@
-<ul class="pizzas">
-  @for (pizza of pizzas; track pizza.name) {
-    <li class="pizza" [class.sold-out]="pizza.soldOut">
-      <img src="assets/{{ pizza.photoName }}" [alt]="pizza.name" />
-      <div>
-        <h3>{{ pizza.name }}</h3>
-        <p>{{ pizza.ingredients }}</p>
-        @if (pizza.soldOut) {
-          <span>SOLD OUT</span>
-        } @else {
-          <span>{{ pizza.price | currency }}</span>
-        }
-      </div>
-    </li>
-  }
-</ul>
+@if (pizzas.length > 0) {
+  <ul class="pizzas">
+    @for (pizza of pizzas; track pizza.name) {
+      <li class="pizza" [class.sold-out]="pizza.soldOut">
+        <img src="assets/{{ pizza.photoName }}" [alt]="pizza.name" />
+        <div>
+          <h3>{{ pizza.name }}</h3>
+          <p>{{ pizza.ingredients }}</p>
+          <span>{{
+            pizza.soldOut ? "SOLD OUT" : (pizza.price | currency)
+          }}</span>
+        </div>
+      </li>
+    }
+  </ul>
+} @else {
+  <p>We're still working on our menu. Please come back later :)</p>
+}

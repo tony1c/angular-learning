@@ -1,5 +1,4 @@
-import { Component, inject } from '@angular/core';
-import { PizzaService } from '../../services/pizza.service';
+import { Component, Input } from '@angular/core';
 import { Pizza } from '../../models/pizza.model';
 import { CurrencyPipe } from '@angular/common';
 
@@ -11,7 +10,5 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './pizza.component.css',
 })
 export class PizzaComponent {
-  #pizzaService: PizzaService = inject(PizzaService);
-  pizzaCount: number = this.#pizzaService.getPizzaCount();
-  pizzas: Pizza[] = this.#pizzaService.getPizzas();
+  @Input() pizzas: Pizza[] = [];
 }

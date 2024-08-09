@@ -6,8 +6,8 @@ import { Item } from '../models/item-model';
 })
 export class ItemsService {
   #items: Item[] = [
-    { quantity: '1', itemValue: 'value' },
-    { quantity: '2', itemValue: 'value2' },
+    { quantity: 1, itemValue: 'value' },
+    { quantity: 2, itemValue: 'value2' },
   ];
 
   public addItem(item: Item): void {

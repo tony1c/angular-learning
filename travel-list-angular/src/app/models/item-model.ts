@@ -1,4 +1,4 @@
 export interface Item {
-  quantity: string | null;
+  quantity: number;
   itemValue: string;
 }

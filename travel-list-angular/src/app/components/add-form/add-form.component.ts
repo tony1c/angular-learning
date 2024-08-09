@@ -1,5 +1,10 @@
 import { Component, inject } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
+import {
+  ReactiveFormsModule,
+  FormsModule,
+  FormBuilder,
+  Validators,
+} from '@angular/forms';
 
 @Component({
   selector: 'app-add-form',
@@ -12,11 +17,17 @@ export class AddFormComponent {
   numberOfItems: number[] = Array.from({ length: 20 }, (_, i) => i + 1);
   #fb: FormBuilder = inject(FormBuilder);
   itemForm = this.#fb.group({
-    quantity: '',
-    itemValue: '',
+    quantity: 1,
+    itemValue: ['', Validators.required],
   });
 
   public onSubmit() {
-    console.log('Submitted');
+    if (this.itemForm.value.quantity) {
+      const values = {
+        ...this.itemForm.value,
+        quantity: +this.itemForm.value.quantity,
+      };
+      console.log('Submitted', values);
+    }
   }
 }

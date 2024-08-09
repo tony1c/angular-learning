@@ -1,0 +1,10 @@
+<form action="" class="add-form">
+  <h3>What do you need for your 😍 trip?</h3>
+  <select>
+    @for(num of numberOfItems; track num) {
+    <option [value]="num">{{ num }}</option>
+    }
+  </select>
+  <input type="text" placeholder="Item..." [formControl]="itemToAdd" />
+  <button (click)="logValue()">Add</button>
+</form>

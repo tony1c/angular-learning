@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { ReactiveFormsModule, FormsModule, FormControl } from '@angular/forms';
+import { Component, inject } from '@angular/core';
+import { ReactiveFormsModule, FormsModule, FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-add-form',
@@ -10,9 +10,13 @@ import { ReactiveFormsModule, FormsModule, FormControl } from '@angular/forms';
 })
 export class AddFormComponent {
   numberOfItems: number[] = Array.from({ length: 20 }, (_, i) => i + 1);
-  itemToAdd = new FormControl('');
+  #fb: FormBuilder = inject(FormBuilder);
+  itemForm = this.#fb.group({
+    quantity: '',
+    itemValue: '',
+  });
 
-  public logValue() {
-    console.log(this.itemToAdd.value);
+  public onSubmit() {
+    console.log('Submitted');
   }
 }

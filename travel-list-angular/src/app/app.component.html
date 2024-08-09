@@ -2,7 +2,15 @@
   <h1>🏝️ Far Away 🧳</h1>
   <app-add-form></app-add-form>
   <div class="list">
-    <ul></ul>
+    <ul>
+      @for (item of items; track $index) {
+        <li>
+          <input type="checkbox" name="" id="" />
+          {{ item.quantity }} {{ item.itemValue }}
+          <button>❌</button>
+        </li>
+      }
+    </ul>
     <div class="actions">
       <select>
         <option>Sort by input order</option>

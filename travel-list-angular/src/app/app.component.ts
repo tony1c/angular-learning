@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AddFormComponent } from './components/add-form/add-form.component';
+import { ItemsService } from './services/items.service';
+import { Item } from './models/item-model';
 
 @Component({
   selector: 'app-root',
@@ -11,4 +13,6 @@ import { AddFormComponent } from './components/add-form/add-form.component';
 })
 export class AppComponent {
   title = 'travel-list-angular';
+  #itemsService: ItemsService = inject(ItemsService);
+  items: Item[] = this.#itemsService.getItems();
 }

@@ -1,10 +1,10 @@
-<form action="" class="add-form">
+<form action="" class="add-form" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
   <h3>What do you need for your 😍 trip?</h3>
-  <select>
-    @for(num of numberOfItems; track num) {
-    <option [value]="num">{{ num }}</option>
+  <select formControlName="quantity">
+    @for (num of numberOfItems; track num) {
+      <option>{{ num }}</option>
     }
   </select>
-  <input type="text" placeholder="Item..." [formControl]="itemToAdd" />
-  <button (click)="logValue()">Add</button>
+  <input type="text" placeholder="Item..." formControlName="itemValue" />
+  <button type="submit">Add</button>
 </form>

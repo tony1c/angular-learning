@@ -1,7 +1,7 @@
 <form action="" class="add-form" [formGroup]="itemForm" (ngSubmit)="onSubmit()">
   <h3>What do you need for your 😍 trip?</h3>
   <select formControlName="quantity">
-    @for (num of numberOfItems; track num) {
+    @for (num of numberOfItems; track $index) {
       <option>{{ num }}</option>
     }
   </select>

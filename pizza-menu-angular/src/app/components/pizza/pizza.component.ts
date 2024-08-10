@@ -10,5 +10,5 @@ import { CurrencyPipe } from '@angular/common';
   styleUrl: './pizza.component.css',
 })
 export class PizzaComponent {
-  @Input() pizzas: Pizza[] = [];
+  @Input({ required: true }) pizzas: Pizza[] = [];
 }

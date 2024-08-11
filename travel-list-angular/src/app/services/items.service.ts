@@ -1,23 +1,43 @@
 import { Injectable } from '@angular/core';
 import { Item } from '../models/item-model';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ItemsService {
-  #items: Item[] = [
-    { quantity: '1', itemValue: 'value' },
-    { quantity: '2', itemValue: 'value2' },
-  ];
+  items$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([
+    {
+      id: Date.now(),
+      quantity: '1',
+      itemValue: 'value',
+      isCompleted: false,
+    },
+  ]);
 
   public addItem(item: Item): void {
-    if (item) {
-      this.#items.push(item);
-    }
-    return;
+    const newItem: Item = { ...item, id: Date.now() };
+    const items: Item[] = this.items$.getValue();
+    const updatedItems: Item[] = [...items, newItem];
+    this.items$.next(updatedItems);
   }
 
-  public getItems(): Item[] {
-    return this.#items;
+  public removeItem(id: number): void {
+    const items: Item[] = this.items$.getValue();
+    const updatedItems: Item[] = items.filter((item) => item.id !== id);
+    this.items$.next(updatedItems);
+  }
+
+  public toggleCompleted(id: number): void {
+    const items: Item[] = this.items$.getValue();
+    const updatedItems: Item[] = items.map((item) =>
+      item.id === id ? { ...item, isCompleted: !item.isCompleted } : item,
+    );
+
+    this.items$.next(updatedItems);
+  }
+
+  public completedCount() {
+    // Wanna get the count of the items marked as completed
   }
 }

@@ -1,8 +1,9 @@
-import { Component, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AddFormComponent } from './components/add-form/add-form.component';
-import { ItemsService } from './services/items.service';
+import { Subscription } from 'rxjs';
 import { Item } from './models/item-model';
+import { ItemsService } from './services/items.service';
 
 @Component({
   selector: 'app-root',
@@ -13,6 +14,20 @@ import { Item } from './models/item-model';
 })
 export class AppComponent {
   title = 'travel-list-angular';
-  #itemsService: ItemsService = inject(ItemsService);
-  items: Item[] = this.#itemsService.getItems();
+  itemSubscription: Subscription;
+  items$: Item[] = [];
+
+  constructor(public itemsService: ItemsService) {
+    this.itemSubscription = this.itemsService.items$.subscribe(
+      (items) => (this.items$ = items),
+    );
+  }
+
+  itemToRemove(item: Item) {
+    this.itemsService.removeItem(item.id);
+  }
+
+  toggleCompleted(item: Item) {
+    this.itemsService.toggleCompleted(item.id);
+  }
 }

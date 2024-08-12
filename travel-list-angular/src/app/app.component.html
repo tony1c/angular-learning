@@ -24,7 +24,17 @@
         <option value="status">Sort by packed status</option>
       </select>
       <button (click)="clearList()">Clear list</button>
-      <p>{{ sortBy }}</p>
+      <p>
+        Sorted by:
+        <span
+          [ngStyle]="{
+            color: 'red',
+            textDecoration: 'underline',
+            textTransform: 'uppercase'
+          }"
+          >{{ sortBy }}</span
+        >
+      </p>
     </div>
   </div>
 

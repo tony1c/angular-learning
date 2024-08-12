@@ -7,18 +7,20 @@ import { Item } from '../models/item-model';
 })
 export class SortByPipe implements PipeTransform {
   transform(items: Item[], sortBy: string): Item[] {
-    let sortedItems = items;
+    const sortedItems = [...items];
 
     if (sortBy === 'description') {
-      sortedItems = items.sort((a, b) =>
-        a.itemValue.localeCompare(b.itemValue),
-      );
+      sortedItems.sort((a, b) => a.itemValue.localeCompare(b.itemValue));
     }
 
     if (sortBy === 'status') {
-      sortedItems = items.sort(
-        (a, b) => Number(a.isCompleted) - Number(b.isCompleted),
-      );
+      console.log('Sorting by status...');
+      sortedItems.sort((a, b) => {
+        console.log(`${a.itemValue}, ${a.isCompleted}`);
+        console.log(`${b.itemValue}, ${b.isCompleted}`);
+        console.log('-----------------------------');
+        return Number(a.isCompleted) - Number(b.isCompleted);
+      });
     }
 
     return sortedItems;

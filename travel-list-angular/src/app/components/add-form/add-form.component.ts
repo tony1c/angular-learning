@@ -2,8 +2,6 @@ import { Component, inject } from '@angular/core';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ItemsService } from '../../services/items.service';
 import { Item } from '../../models/item-model';
-// import { ItemsService } from '../../services/items.service';
-// import { Item } from '../../models/item-model';
 
 @Component({
   selector: 'app-add-form',

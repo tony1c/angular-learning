@@ -14,11 +14,7 @@ export class SortByPipe implements PipeTransform {
     }
 
     if (sortBy === 'status') {
-      console.log('Sorting by status...');
       sortedItems.sort((a, b) => {
-        console.log(`${a.itemValue}, ${a.isCompleted}`);
-        console.log(`${b.itemValue}, ${b.isCompleted}`);
-        console.log('-----------------------------');
         return Number(a.isCompleted) - Number(b.isCompleted);
       });
     }

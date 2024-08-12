@@ -15,6 +15,5 @@ export class CountCompletedPercentagePipe implements PipeTransform {
       Math.floor((100 * countCompleted) / items.length) || 0;
 
     return percentage;
-    // return `${percentage || 0} %`;
   }
 }

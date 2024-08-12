@@ -1,4 +1,3 @@
-import { NgStyle } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
@@ -20,8 +19,8 @@ import { SortByPipe } from './pipes/sort-by.pipe';
     CountCompletedPercentagePipe,
     SortByPipe,
     FormsModule,
-    NgStyle,
   ],
+
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

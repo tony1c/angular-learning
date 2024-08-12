@@ -16,14 +16,19 @@ export class AddFormComponent {
   numberOfItems: number[] = Array.from({ length: 20 }, (_, i) => i + 1);
   #fb: FormBuilder = inject(FormBuilder);
   itemForm = this.#fb.group({
-    quantity: '1',
+    quantity: 1,
     itemValue: ['', Validators.required],
   });
 
   constructor(private itemsService: ItemsService) {}
 
   public onSubmit(): void {
+    if (this.itemForm.invalid) {
+      return;
+    }
+
     const item = this.itemForm.value as Item;
     this.itemsService.addItem(item);
+    this.itemForm.reset({ quantity: 1, itemValue: '' });
   }
 }

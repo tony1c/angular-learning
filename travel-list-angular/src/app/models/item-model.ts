@@ -1,6 +1,6 @@
 export interface Item {
   id: number;
-  quantity: string;
+  quantity: number;
   itemValue: string;
   isCompleted: boolean;
 }

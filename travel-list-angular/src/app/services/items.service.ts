@@ -9,7 +9,7 @@ export class ItemsService {
   items$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([
     {
       id: Date.now(),
-      quantity: '1',
+      quantity: 2,
       itemValue: 'value',
       isCompleted: false,
     },

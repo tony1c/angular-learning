@@ -6,14 +6,7 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root',
 })
 export class ItemsService {
-  items$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([
-    {
-      id: Date.now(),
-      quantity: 2,
-      itemValue: 'value',
-      isCompleted: false,
-    },
-  ]);
+  items$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
 
   public addItem(item: Item): void {
     const newItem: Item = { ...item, id: Date.now() };
@@ -38,6 +31,10 @@ export class ItemsService {
   }
 
   public clearList(): void {
-    this.items$.next([]);
+    if (confirm('Are you sure you want to delete all items?')) {
+      this.items$.next([]);
+    } else {
+      return;
+    }
   }
 }

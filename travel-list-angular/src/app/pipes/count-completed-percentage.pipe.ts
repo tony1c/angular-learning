@@ -6,14 +6,15 @@ import { Item } from '../models/item-model';
   standalone: true,
 })
 export class CountCompletedPercentagePipe implements PipeTransform {
-  transform(items: Item[]): string {
+  transform(items: Item[]): number {
     const countCompleted: number = items.filter(
       (item) => item.isCompleted,
     ).length;
 
-    const percentage: number = Math.floor(
-      (100 * countCompleted) / items.length,
-    );
-    return `${percentage || 0} %`;
+    const percentage: number =
+      Math.floor((100 * countCompleted) / items.length) || 0;
+
+    return percentage;
+    // return `${percentage || 0} %`;
   }
 }

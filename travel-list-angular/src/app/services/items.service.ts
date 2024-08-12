@@ -9,7 +9,7 @@ export class ItemsService {
   items$: BehaviorSubject<Item[]> = new BehaviorSubject<Item[]>([]);
 
   public addItem(item: Item): void {
-    const newItem: Item = { ...item, id: Date.now() };
+    const newItem: Item = { ...item, id: Date.now(), isCompleted: false };
     const items: Item[] = this.items$.getValue();
     const updatedItems: Item[] = [...items, newItem];
     this.items$.next(updatedItems);

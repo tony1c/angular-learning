@@ -1,3 +1,4 @@
+import { FormsModule } from '@angular/forms';
 import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { AddFormComponent } from './components/add-form/add-form.component';
@@ -6,6 +7,7 @@ import { Item } from './models/item-model';
 import { ItemsService } from './services/items.service';
 import { CountCompletedPipe } from './pipes/count-completed.pipe';
 import { CountCompletedPercentagePipe } from './pipes/count-completed-percentage.pipe';
+import { SortByPipe } from './pipes/sort-by.pipe';
 
 @Component({
   selector: 'app-root',
@@ -15,6 +17,8 @@ import { CountCompletedPercentagePipe } from './pipes/count-completed-percentage
     AddFormComponent,
     CountCompletedPipe,
     CountCompletedPercentagePipe,
+    SortByPipe,
+    FormsModule,
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
@@ -23,6 +27,7 @@ export class AppComponent {
   title = 'travel-list-angular';
   itemSubscription: Subscription;
   items$: Item[] = [];
+  sortBy = 'input';
 
   constructor(public itemsService: ItemsService) {
     this.itemSubscription = this.itemsService.items$.subscribe(
@@ -30,12 +35,12 @@ export class AppComponent {
     );
   }
 
-  itemToRemove(item: Item) {
-    this.itemsService.removeItem(item.id);
+  itemToRemove(id: number) {
+    this.itemsService.removeItem(id);
   }
 
-  toggleCompleted(item: Item) {
-    this.itemsService.toggleCompleted(item.id);
+  toggleCompleted(id: number) {
+    this.itemsService.toggleCompleted(id);
   }
 
   clearList() {

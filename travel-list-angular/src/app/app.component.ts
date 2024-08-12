@@ -4,11 +4,18 @@ import { AddFormComponent } from './components/add-form/add-form.component';
 import { Subscription } from 'rxjs';
 import { Item } from './models/item-model';
 import { ItemsService } from './services/items.service';
+import { CountCompletedPipe } from './pipes/count-completed.pipe';
+import { CountCompletedPercentagePipe } from './pipes/count-completed-percentage.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, AddFormComponent],
+  imports: [
+    RouterOutlet,
+    AddFormComponent,
+    CountCompletedPipe,
+    CountCompletedPercentagePipe,
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })
@@ -29,5 +36,9 @@ export class AppComponent {
 
   toggleCompleted(item: Item) {
     this.itemsService.toggleCompleted(item.id);
+  }
+
+  clearList() {
+    this.itemsService.clearList();
   }
 }

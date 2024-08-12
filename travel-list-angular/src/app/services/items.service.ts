@@ -37,7 +37,7 @@ export class ItemsService {
     this.items$.next(updatedItems);
   }
 
-  public completedCount() {
-    // Wanna get the count of the items marked as completed
+  public clearList(): void {
+    this.items$.next([]);
   }
 }

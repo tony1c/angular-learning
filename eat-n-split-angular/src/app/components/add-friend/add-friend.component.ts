@@ -17,8 +17,10 @@ import { Friend } from '../../models/friend.model';
 export class AddFriendComponent {
   #fb = inject(FormBuilder);
   addFriendForm = this.#fb.nonNullable.group({
+    id: crypto.randomUUID(),
     name: ['', Validators.required],
-    url: 'https://i.pravatar.cc/48',
+    image: 'https://i.pravatar.cc/48',
+    balance: 0,
   });
   @Output() newFriend = new EventEmitter<Friend>();
 
@@ -27,7 +29,12 @@ export class AddFriendComponent {
       return;
     }
 
-    const newFriend = this.addFriendForm.value as Friend;
+    const image = `${this.addFriendForm.value.image}?=${this.addFriendForm.value.id}`;
+    const newFriend = {
+      ...this.addFriendForm.value,
+      image,
+    } as Friend;
+
     console.log(newFriend);
     this.newFriend.emit(newFriend);
     this.addFriendForm.reset();

@@ -1,6 +1,6 @@
-import { Friends } from '../models/friend.model';
+import { Friend } from '../models/friend.model';
 
-export const initialFriends: Friends[] = [
+export const initialFriends: Friend[] = [
   {
     id: 118836,
     name: 'Clark',

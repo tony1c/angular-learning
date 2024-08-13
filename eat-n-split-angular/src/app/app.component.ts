@@ -1,13 +1,30 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
+import { initialFriends } from './mocks/friends.mock';
+import { Friend } from './models/friend.model';
+import { AbsPipe } from './pipes/abs.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [CommonModule, AbsPipe],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'eat-n-split-angular';
+  initialFriends: Friend[] = [];
+  currentSelectedFriend = '';
+
+  ngOnInit(): void {
+    this.initialFriends = initialFriends;
+  }
+
+  toggleSelectedFriend(name: string): void {
+    if (this.currentSelectedFriend === name) {
+      this.currentSelectedFriend = '';
+    } else {
+      this.currentSelectedFriend = name;
+    }
+  }
 }

@@ -5,6 +5,8 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+
+import { SplitBill } from '../../models/splitBill.model';
 // import { Subscription } from 'rxjs';
 
 @Component({
@@ -17,31 +19,28 @@ import {
 export class SplitBillFormComponent {
   @Input({ required: true }) currentSelectedFriend = '';
   @Output() closeSplitForm = new EventEmitter<Event>();
+  @Output() submitted = new EventEmitter<SplitBill>();
 
   #fb = inject(FormBuilder);
-  splitForm = this.#fb.nonNullable.group({
-    bill: [null, Validators.required],
-    expanse: [null, Validators.required],
-    friendExpanse: null,
+  splitForm = this.#fb.group({
+    bill: ['', Validators.required],
+    expanse: ['', Validators.required],
+    friendExpanse: { value: '', disabled: true },
     paying: ['You', Validators.required],
   });
-
-  // private subscriptions: Subscription[] = [];
 
   constructor() {
     // Subscribe to value changes on bill and expanse fields
     this.splitForm.valueChanges.subscribe(() => {
       const bill = Number(this.splitForm.get('bill')?.value) || 0;
       const expanse = Number(this.splitForm.get('expanse')?.value) || 0;
-      const friendExpanse = bill - expanse;
+      const friendExpanse = bill - expanse || 0;
 
       // Update the friendExpanse field
       this.splitForm
         .get('friendExpanse')
-        ?.setValue(friendExpanse as unknown as null, { emitEvent: false });
+        ?.setValue(friendExpanse as unknown as string, { emitEvent: false });
     });
-
-    // this.subscriptions.push(billExpanseChanges);
   }
 
   onSubmit(): void {
@@ -52,12 +51,13 @@ export class SplitBillFormComponent {
     const bill = Number(this.splitForm.value.bill);
     const expanse = Number(this.splitForm.value.expanse);
     const splitBill = {
-      ...this.splitForm.value,
+      ...this.splitForm.getRawValue(),
       bill,
       expanse,
-    };
+    } as unknown as SplitBill;
     console.log(splitBill);
     this.closeSplitForm.emit();
+    this.submitted.emit(splitBill);
     this.splitForm.reset();
   }
 }

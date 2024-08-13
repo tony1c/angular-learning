@@ -5,6 +5,7 @@ import { Friend } from './models/friend.model';
 import { AbsPipe } from './pipes/abs.pipe';
 import { AddFriendComponent } from './components/add-friend/add-friend.component';
 import { SplitBillFormComponent } from './components/split-bill-form/split-bill-form.component';
+import { SplitBill } from './models/splitBill.model';
 
 @Component({
   selector: 'app-root',
@@ -40,7 +41,30 @@ export class AppComponent implements OnInit {
     this.addFriend = !this.addFriend;
   }
 
-  closeSplitForm(): void {
+  submitSplitBill(splitForm: SplitBill) {
+    const friendIndex = this.initialFriends.findIndex(
+      (friend) => friend.name === this.currentSelectedFriend,
+    );
+    const selectedFriend = this.initialFriends[friendIndex];
+
+    if (this.currentSelectedFriend === splitForm.paying) {
+      const newBalance = selectedFriend.balance - splitForm.expanse;
+      console.log(newBalance);
+
+      this.initialFriends[friendIndex] = {
+        ...this.initialFriends[friendIndex],
+        balance: newBalance,
+      };
+    }
+
+    if (splitForm.paying === 'You') {
+      const newBalance = selectedFriend.balance + splitForm.friendExpanse;
+
+      this.initialFriends[friendIndex] = {
+        ...this.initialFriends[friendIndex],
+        balance: newBalance,
+      };
+    }
     this.currentSelectedFriend = '';
   }
 }

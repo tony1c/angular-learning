@@ -1,13 +1,5 @@
 <div class="app">
   <div class="sidebar">
-    <!-- <ul>
-      <li>
-        <img src="https://i.pravatar.cc/48?u=118836" alt="Clark" />
-        <h3>Clark</h3>
-        <p class="green">Clark owes you 18€</p>
-        <button class="button">Select</button>
-      </li>
-    </ul> -->
     <ul>
       @for(friend of initialFriends; track friend.id) {
       <li>
@@ -31,12 +23,17 @@
       </li>
       }
     </ul>
-    <button class="button">Add friend</button>
+    @if (addFriend) {
+    <app-add-friend (newFriend)="addNewFriend($event)" />
+    }
+    <button class="button" (click)="toggleAddFriend()">
+      {{ addFriend ? "Close" : "Add friend" }}
+    </button>
   </div>
   <form class="form-split-bill">
     <h2>SPLIT A BILL WITH CLARK</h2>
-    <label>💰 Bill value</label>
-    <input type="text" />
+    <label for="bill">💰 Bill value</label>
+    <input id="bill" type="text" />
     <button class="button">Split bill</button>
   </form>
 </div>

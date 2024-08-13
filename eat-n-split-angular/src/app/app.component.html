@@ -1,39 +1,37 @@
 <div class="app">
   <div class="sidebar">
     <ul>
-      @for(friend of initialFriends; track friend.id) {
-      <li>
-        <img [src]="friend.image" [alt]="friend.name" />
-        <h3>{{ friend.name }}</h3>
-        @if (friend.balance > 0) {
-        <p class="green">
-          {{ friend.name }} owes you {{ friend.balance | currency : "EUR" }}
-        </p>
-        } @else if (friend.balance < 0) {
-        <p class="red">
-          You owe {{ friend.name }}
-          {{ friend.balance | abs | currency : "EUR" }}
-        </p>
-        } @else {
-        <p>You and {{ friend.name }} are even</p>
-        }
-        <button class="button" (click)="toggleSelectedFriend(friend.name)">
-          {{ currentSelectedFriend === friend.name ? "Close" : "Select" }}
-        </button>
-      </li>
+      @for (friend of initialFriends; track friend.id) {
+        <li>
+          <img [src]="friend.image" [alt]="friend.name" />
+          <h3>{{ friend.name }}</h3>
+          @if (friend.balance > 0) {
+            <p class="green">
+              {{ friend.name }} owes you {{ friend.balance | currency: "EUR" }}
+            </p>
+          } @else if (friend.balance < 0) {
+            <p class="red">
+              You owe {{ friend.name }}
+              {{ friend.balance | abs | currency: "EUR" }}
+            </p>
+          } @else {
+            <p>You and {{ friend.name }} are even</p>
+          }
+          <button class="button" (click)="toggleSelectedFriend(friend.name)">
+            {{ currentSelectedFriend === friend.name ? "Close" : "Select" }}
+          </button>
+        </li>
       }
     </ul>
     @if (addFriend) {
-    <app-add-friend (newFriend)="addNewFriend($event)" />
+      <app-add-friend (newFriend)="addNewFriend($event)" />
     }
     <button class="button" (click)="toggleAddFriend()">
       {{ addFriend ? "Close" : "Add friend" }}
     </button>
   </div>
-  <form class="form-split-bill">
-    <h2>SPLIT A BILL WITH CLARK</h2>
-    <label for="bill">💰 Bill value</label>
-    <input id="bill" type="text" />
-    <button class="button">Split bill</button>
-  </form>
+
+  @if (currentSelectedFriend) {
+    <app-split-bill-form [currentSelectedFriend]="currentSelectedFriend" />
+  }
 </div>

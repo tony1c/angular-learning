@@ -1,0 +1,19 @@
+<form class="form-split-bill" [formGroup]="splitForm" (ngSubmit)="onSubmit()">
+  <h2>SPLIT A BILL WITH CLARK</h2>
+
+  <label for="bill">💰 Bill value</label>
+  <input id="bill" type="text" formControlName="bill" />
+
+  <label for="expanse">🧍‍♀️ Your expense</label>
+  <input id="expanse" type="text" formControlName="expanse" />
+
+  <label for="expanse">👫 {{ currentSelectedFriend }}'s expense</label>
+  <input id="expanse" type="text" disabled [value]="splitForm.value.bill" />
+
+  <label for="expanse">🤑 Who is paying the bill</label>
+  <select formControlName="paying">
+    <option>You</option>
+    <option>{{ currentSelectedFriend }}</option>
+  </select>
+  <button class="button">Split bill</button>
+</form>

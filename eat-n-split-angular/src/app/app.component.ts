@@ -4,11 +4,12 @@ import { initialFriends } from './mocks/friends.mock';
 import { Friend } from './models/friend.model';
 import { AbsPipe } from './pipes/abs.pipe';
 import { AddFriendComponent } from './components/add-friend/add-friend.component';
+import { SplitBillFormComponent } from './components/split-bill-form/split-bill-form.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, AddFriendComponent, AbsPipe],
+  imports: [CommonModule, AddFriendComponent, AbsPipe, SplitBillFormComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css',
 })

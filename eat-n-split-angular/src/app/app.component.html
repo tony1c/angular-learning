@@ -32,6 +32,9 @@
   </div>
 
   @if (currentSelectedFriend) {
-    <app-split-bill-form [currentSelectedFriend]="currentSelectedFriend" />
+    <app-split-bill-form
+      (closeSplitForm)="closeSplitForm()"
+      [currentSelectedFriend]="currentSelectedFriend"
+    />
   }
 </div>

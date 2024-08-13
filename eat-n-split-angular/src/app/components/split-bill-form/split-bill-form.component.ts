@@ -1,10 +1,11 @@
-import { Component, inject, Input } from '@angular/core';
+import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import {
   FormBuilder,
   FormsModule,
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+// import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-split-bill-form',
@@ -15,13 +16,33 @@ import {
 })
 export class SplitBillFormComponent {
   @Input({ required: true }) currentSelectedFriend = '';
+  @Output() closeSplitForm = new EventEmitter<Event>();
+
   #fb = inject(FormBuilder);
-  // diff: number = this.splitForm.value.bill - this.splitForm.value.expanse;
   splitForm = this.#fb.nonNullable.group({
-    bill: ['', Validators.required],
-    expanse: ['', Validators.required],
+    bill: [null, Validators.required],
+    expanse: [null, Validators.required],
+    friendExpanse: null,
     paying: ['You', Validators.required],
   });
+
+  // private subscriptions: Subscription[] = [];
+
+  constructor() {
+    // Subscribe to value changes on bill and expanse fields
+    this.splitForm.valueChanges.subscribe(() => {
+      const bill = Number(this.splitForm.get('bill')?.value) || 0;
+      const expanse = Number(this.splitForm.get('expanse')?.value) || 0;
+      const friendExpanse = bill - expanse;
+
+      // Update the friendExpanse field
+      this.splitForm
+        .get('friendExpanse')
+        ?.setValue(friendExpanse as unknown as null, { emitEvent: false });
+    });
+
+    // this.subscriptions.push(billExpanseChanges);
+  }
 
   onSubmit(): void {
     if (this.splitForm.invalid) {
@@ -35,9 +56,8 @@ export class SplitBillFormComponent {
       bill,
       expanse,
     };
-
-    // console.log(this.splitForm.value);
     console.log(splitBill);
+    this.closeSplitForm.emit();
     this.splitForm.reset();
   }
 }

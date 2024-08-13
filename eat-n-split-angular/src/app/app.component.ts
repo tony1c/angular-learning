@@ -39,4 +39,8 @@ export class AppComponent implements OnInit {
     this.initialFriends.push(newFriend);
     this.addFriend = !this.addFriend;
   }
+
+  closeSplitForm(): void {
+    this.currentSelectedFriend = '';
+  }
 }

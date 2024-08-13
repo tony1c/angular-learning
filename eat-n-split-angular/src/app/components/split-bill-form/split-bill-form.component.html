@@ -8,7 +8,7 @@
   <input id="expanse" type="text" formControlName="expanse" />
 
   <label for="expanse">👫 {{ currentSelectedFriend }}'s expense</label>
-  <input id="expanse" type="text" disabled [value]="splitForm.value.bill" />
+  <input id="expanse" type="text" formControlName="friendExpanse" />
 
   <label for="expanse">🤑 Who is paying the bill</label>
   <select formControlName="paying">

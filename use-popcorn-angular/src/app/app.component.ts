@@ -10,16 +10,4 @@ import { RouterOutlet } from '@angular/router';
 })
 export class AppComponent {
   title = 'use-popcorn-angular';
-
-  count = 0;
-
-  increase(): void {
-    this.count++;
-  }
-
-  decrease(): void {
-    if (this.count <= 0) return;
-
-    this.count--;
-  }
 }

@@ -1,6 +1,7 @@
-import { Movie } from '../models/movie';
+import { SearchMovie } from '../models/movie';
+import { WatchedMovie } from '../models/watchedMovie';
 
-export const tempMovieData: Movie[] = [
+export const tempMovieData: SearchMovie[] = [
   {
     imdbID: 'tt1375666',
     Title: 'Inception',
@@ -24,7 +25,7 @@ export const tempMovieData: Movie[] = [
   },
 ];
 
-export const tempWatchedData = [
+export const tempWatchedData: WatchedMovie[] = [
   {
     imdbID: 'tt1375666',
     Title: 'Inception',

@@ -1,0 +1,61 @@
+<main class="main">
+  <div class="box">
+    <button class="btn-toggle">-</button>
+    <ul class="list list-movies">
+      @for (movie of movies$; track movie.imdbID) {
+        <li>
+          <img [src]="movie.Poster" [alt]="movie.Title + ' poster'" />
+          <h3>{{ movie.Title }}</h3>
+          <div>
+            <span>🗓️</span>
+            <span>{{ movie.Year }}</span>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+  <div class="box">
+    <button class="btn-toggle">-</button>
+    <div class="summary">
+      <h2>Movies you watched</h2>
+
+      <div>
+        <p>
+          <span>#️⃣</span>
+          <span>0 movies</span>
+        </p>
+        <p>
+          <span>⭐️</span>
+          <span>0.00</span>
+        </p>
+        <p>
+          <span>🌟</span>
+          <span>0.00</span>
+        </p>
+        <p>
+          <span>⏳</span>
+          <span>0 min</span>
+        </p>
+      </div>
+    </div>
+    <ul class="list"></ul>
+
+    <!-- <div class="details"> -->
+    <!--   <header> -->
+    <!--     <button class="btn-back">&#8592;</button> -->
+    <!--     <img -->
+    <!--       src="https://m.media-amazon.com/images/M/MV5BZGFjOTRiYjgtYjEzMS00ZjQ2LTkzY2YtOGQ0NDI2NTVjOGFmXkEyXkFqcGdeQXVyNDQ5MDYzMTk@._V1_SX300.jpg" -->
+    <!--     /> -->
+    <!--     <div class="details-overview"> -->
+    <!--       <h2>{{ selectedMovie.Title }}</h2> -->
+    <!--       <p> -->
+    <!--         {{ selectedMovie.Year }} &#x2022; {{ selectedMovie.runtime }} min -->
+    <!--       </p> -->
+    <!--       <p>{{ selectedMovie }}</p> -->
+    <!--       <span>⭐️</span> -->
+    <!--     </div> -->
+    <!--   </header> -->
+    <!--   <section></section> -->
+    <!-- </div> -->
+  </div>
+</main>
